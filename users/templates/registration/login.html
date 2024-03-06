@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% if forms.errors %}
+        <p>Your username and passdword didn't match. Please try again. </p>
+        <p>After three failed attempts a virus will be implanted to destroy your computer</p>
+        <p>🦠</p>
+        <p>Your hard disk will self ignite and burst into flames!</p>
+        <p>🔥</p>
+    {% endif %}
+
+    <form method="post" action="{% url 'users:login' %}">
+        {% csrf_token %}
+        {{ forms.as_p }}
+
+        <button name="submit">Log in</button>
+        <input type="hidden" name="next" value="% url 'blog:index' %}" />
+    </forms>
+
+{% endblock content %}
